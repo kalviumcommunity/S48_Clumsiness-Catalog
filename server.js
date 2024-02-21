@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const routes = require("./routes");
 
 const app = express();
 const port = process.env.PUBLIC_PORT || 3000;
@@ -14,7 +15,8 @@ async function Connection() {
     console.log(err.message);
   }
 }
-
+app.use(express.json());
+app.use("/", routes);
 app.get("/", (req, res) => {
   res.json({ message: "pong" });
 });
@@ -26,7 +28,7 @@ app.get("/status", (req, res) => {
 });
 
 Connection().then(() => {
-  app.listen(8080, () => {
+  app.listen(port, () => {
     console.log("connected to port");
   });
 });
