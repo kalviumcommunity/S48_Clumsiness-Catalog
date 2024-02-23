@@ -1,0 +1,108 @@
+/* Importing Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&display=swap");
+
+/* Resetting default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Setting background color and height for the body */
+body {
+  background-color: #ddddd5;
+  height: 100vh;
+}
+
+/* Styling for the navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 1.8em;
+  background-color: #b7b7a4;
+  font-family: "Barriecito", system-ui; /* Applying the imported font */
+}
+
+/* Styling for the logo */
+.logo {
+  color: #2d6a4f;
+  font-size: 30px;
+  font-weight: bolder;
+  /* Adjusting padding to align with signIn button */
+  padding-right: 55%;
+}
+
+/* Styling for the signIn button */
+#signIn {
+  color: #d8f3dc;
+  background-color: #2d6a4f;
+  border: none;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: bolder;
+  font-size: 15px;
+  width: 100px;
+  margin-right: 50px;
+}
+
+/* Hover effect for signIn button */
+#signIn:hover {
+  background-color: #6b705c;
+}
+
+/* Styling for the search bar */
+.searchbar {
+  align-items: center;
+  display: flex;
+}
+
+/* Styling for the search input */
+#search {
+  height: 30px;
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  border: none;
+}
+
+/* Styling for the search button */
+#Search-button {
+  color: #d8f3dc;
+  background-color: #2d6a4f;
+  border: none;
+  padding: 5px;
+  font-weight: lighter;
+  font-size: 15px;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Styling for the content section */
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 50px;
+}
+
+/* Styling for the right content (image) */
+.right-content img {
+  width: 500px;
+}
+
+/* Styling for the left content (text) */
+.left-content {
+  color: #2d6a4f;
+  font-size: 17px;
+  padding-left: 20px;
+}
+
+/* Styling for the unordered list */
+ul {
+  margin-left: 40px;
+}
+
+/* Styling for list items */
+li {
+  list-style: circle;
+}
