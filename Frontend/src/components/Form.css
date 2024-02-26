@@ -1,0 +1,50 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.sign-in-form {
+  background-color: #e0e8d6; /* Light sage green */
+  border: 1px solid #b2b2b2; /* Medium sage green */
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 400px; /* Optional: Set a maximum width */
+}
+
+.sign-in-form h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: #8a9a5b; /* Darker sage green */
+}
+
+.sign-in-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #8a9a5b;
+}
+
+.sign-in-form input[type="text"],
+.sign-in-form input[type="email"],
+.sign-in-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b2b2b2;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.sign-in-form button {
+  background-color: #8a9a5b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sign-in-form button:hover {
+  background-color: #77884d; /* Darker shade on hover */
+}

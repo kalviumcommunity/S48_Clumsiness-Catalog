@@ -34,7 +34,7 @@ body {
 }
 
 /* Styling for the signIn button */
-#signIn {
+#signInButton {
   color: #d8f3dc;
   background-color: #2d6a4f;
   border: none;
@@ -47,7 +47,7 @@ body {
 }
 
 /* Hover effect for signIn button */
-#signIn:hover {
+#signInButton:hover {
   background-color: #6b705c;
 }
 
