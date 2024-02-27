@@ -8,20 +8,20 @@ function Form(props) {
         <h2>Sign In</h2>
         <form>
           {/* Form fields */}
-          <label htmlFor="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" required />
-
-          <label htmlFor="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" required />
-
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-
           <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" required />
+          <input type="text" id="username" name="username" />
 
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <input type="password" id="password" name="password" />
+
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" />
+
+          <label htmlFor="registrationDate">Registration Date:</label>
+          <input type="text" id="registrationDate" name="registrationDate" />
+
+          <label htmlFor="lastLoginDate">Last Login Date:</label>
+          <input type="text" id="lastLoginDate" name="lastLoginDate" />
 
           <button type="submit">Sign In</button>
         </form>
