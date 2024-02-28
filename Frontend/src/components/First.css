@@ -82,7 +82,9 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 50px;
+  padding: 75px 50px;
+  margin-bottom: 50px;
+  border-bottom: 2px solid #2d6a4f;
 }
 
 /* Styling for the right content (image) */
@@ -105,4 +107,57 @@ ul {
 /* Styling for list items */
 li {
   list-style: circle;
+}
+.mongo-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.mongo-data {
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.mongo-data:hover {
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.container {
+  max-width: 1140px; /* Set the max width of the container */
+  margin: 0 auto; /* Center the container */
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin: 1rem 0;
+  border-top: 1px solid #dee2e6; /* Add border top */
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo-link {
+  margin-right: 0.5rem;
+  text-decoration: none;
+  color: #212529; /* Set the color */
+}
+.footer-company {
+  margin-right: 0.5rem;
+}
+.footer-container {
+  background-color: #b7b7a4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #2d6a4f;
+  margin-top: 20px;
 }
