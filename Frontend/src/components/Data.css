@@ -1,0 +1,12 @@
+.delete,.update{
+  color: #d8f3dc;
+  background-color: #6b705c;
+  border: none;
+  padding: 5px;
+  font-weight: bolder;
+  margin-top: 5px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}

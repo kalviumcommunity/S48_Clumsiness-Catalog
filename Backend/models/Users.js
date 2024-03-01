@@ -5,8 +5,8 @@ const UsersSchema = new mongoose.Schema({
   Password: String,
   Email: String,
   RegistrationDate: String,
-  LastLoginDate: String,
+  LastLoginDate: String
 });
 
-const UsersModel = mongoose.model("users",UsersSchema)
+const UsersModel = mongoose.model("users", UsersSchema);
 module.exports = UsersModel;
