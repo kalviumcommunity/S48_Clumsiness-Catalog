@@ -27,20 +27,20 @@ function Data() {
       .catch((err) => console.log(err));
   };
 
-  // const deleteUser = (userId) => {
-  //   axios
-  //     .delete(`http://localhost:3001/deleteUser/${userId}`)
-  //     .then((result) => {
-  //       console.log(result);
-  //       window.location.reload();
-  //       alert("User deleted successfully!");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("User no longer exists.");
-  //       window.location.reload();
-  //     });
-  // };
+  const deleteUser = (userId) => {
+    axios
+      .delete(`http://localhost:3001/deleteUser/${userId}`)
+      .then((result) => {
+        console.log(result);
+        window.location.reload();
+        alert("User deleted successfully!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("User no longer exists.");
+        window.location.reload();
+      });
+  };
 
   // Function to handle editing username
   const handleEdit = (index, field, value) => {
