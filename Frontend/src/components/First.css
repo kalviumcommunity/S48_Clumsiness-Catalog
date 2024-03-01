@@ -34,7 +34,9 @@ body {
 }
 
 /* Styling for the signIn button */
-#signInButton {
+#signInButton,
+#signUpButton,
+#datButton {
   color: #d8f3dc;
   background-color: #2d6a4f;
   border: none;
@@ -44,37 +46,21 @@ body {
   font-size: 15px;
   width: 100px;
   margin-right: 50px;
+  text-decoration: none;
 }
 
 /* Hover effect for signIn button */
 #signInButton:hover {
   background-color: #6b705c;
 }
-
-/* Styling for the search bar */
-.searchbar {
-  align-items: center;
-  display: flex;
+#signUpButton:hover {
+  background-color: #6b705c;
+}
+#datButton:hover{
+  background-color: #6b705c;
 }
 
-/* Styling for the search input */
-#search {
-  height: 30px;
-  padding: 10px;
-  border-radius: 10px 0 0 10px;
-  border: none;
-}
 
-/* Styling for the search button */
-#Search-button {
-  color: #d8f3dc;
-  background-color: #2d6a4f;
-  border: none;
-  padding: 5px;
-  font-weight: lighter;
-  font-size: 15px;
-  border-radius: 0 10px 10px 0;
-}
 
 /* Styling for the content section */
 .content {
@@ -84,7 +70,6 @@ body {
   justify-content: space-between;
   padding: 75px 50px;
   margin-bottom: 50px;
-  border-bottom: 2px solid #2d6a4f;
 }
 
 /* Styling for the right content (image) */

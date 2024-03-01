@@ -17,7 +17,7 @@ async function Connection() {
     );
     console.log("Connected to MongoDB");
   } catch (err) {
-    console.log(err.message);
+    console.error("MongoDB connection error:", err);
   }
 }
 
@@ -33,8 +33,61 @@ app.get("/status", (req, res) => {
 
 app.get("/getUsers", (req, res) => {
   UsersModel.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.json(err));
+    .then(users => res.json(users))
+    .catch(err => {
+      console.error("Error fetching users:", err);
+      res.status(500).json({ error: "Failed to fetch users" });
+    });
+});
+
+app.post("/createUser", (req, res) => {
+  UsersModel.create({
+    Username: req.body.username,
+    Password: req.body.password,
+    Email: req.body.email,
+    RegistrationDate: new Date().toISOString(),
+    LastLoginDate: null
+  })
+    .then(newUser => {
+      res.json(newUser);
+    })
+    .catch(error => {
+      console.error("Error creating user:", error);
+      res.status(500).json({ error: "Failed to create user" });
+    });
+});
+
+app.delete("/deleteUser/:userId", (req, res) => {
+  const userId = req.params.userId;
+  UsersModel.findByIdAndDelete(userId)
+    .then(deletedUser => {
+      if (!deletedUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json({ message: "User deleted successfully", deletedUser });
+    })
+    .catch(error => {
+      console.error("Error deleting user:", error);
+      res.status(500).json({ error: "Failed to delete user" });
+    });
+});
+
+// Update user route
+app.put("/updateUser/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const updatedUserData = req.body; // Assuming updated data is sent in the request body
+
+  UsersModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
+    .then(updatedUser => {
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json({ message: "User updated successfully", updatedUser });
+    })
+    .catch(error => {
+      console.error("Error updating user:", error);
+      res.status(500).json({ error: "Failed to update user" });
+    });
 });
 
 Connection().then(() => {

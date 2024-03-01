@@ -1,49 +1,23 @@
 import "./First.css";
-import Form from "./Form";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function First() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
-  };
-
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/getUsers")
-      .then((users) => setUsers(users.data))
-      .catch((err) => console.log(err));
-  }, []);
-
   return (
-    <div>
-      <div className="navbar">
-        <div className="logo">Clumsi-log</div>
-        <div className="signIn">
-          <button id="signInButton" onClick={toggleFormVisibility}>
-            {isFormVisible ? "Home" : "Sign In"}
-          </button>
+      <div>
+        <div className="navbar">
+          <div className="logo">Clumsi-log</div>
+          <div className="signUp">
+            <Link to="/signup" id="signUpButton">Sign Up</Link>
+          </div>
+          <div className="signIn">
+            <Link to="/signin" id="signInButton">Sign In</Link>
+          </div>
+          <div className="data">
+            <Link to="/data" id="datButton">Explore</Link>
+          </div>
         </div>
-        <div className="searchbar">
-          <input
-            type="text"
-            id="search"
-            name="q"
-            placeholder="Search Here"
-            required
-          />
-          <button type="submit" id="Search-button">
-            Search
-          </button>
-        </div>
-      </div>
 
-      {isFormVisible ? (
-        <Form />
-      ) : (
+
         <div className="content">
           <div className="left-content">
             <h1>Welcome to Clumsi-Log</h1>
@@ -77,27 +51,15 @@ function First() {
             />
           </div>
         </div>
-      )}
 
-      <div className="mongo-container">
-        {users &&
-          users.map((user, id) => (
-            <div className="mongo-data" key={id}>
-              <p> Username: {user.Username}</p>
-              <p> Email: {user.Email}</p>
-              <p> RegistrationDate: {user.RegistrationDate}</p>
+        <div className="footer-container">
+          <footer className="footer">
+            <div className="footer-logo">
+              <span className="footer-company">© 2024 Company, Inc</span>
             </div>
-          ))}
+          </footer>
+        </div>
       </div>
-
-      <div class="footer-container">
-        <footer class="footer">
-          <div class="footer-logo">
-            <span class="footer-company">© 2024 Company, Inc</span>
-          </div>
-        </footer>
-      </div>
-    </div>
   );
 }
 
