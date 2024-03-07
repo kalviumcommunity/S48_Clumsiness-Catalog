@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Form.css";
 
@@ -11,6 +10,7 @@ function Form() {
     registrationDate: "",
     lastLoginDate: "",
   });
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,20 +22,41 @@ function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Destructure formData
+    const { username, password, email } = formData;
+
+    // Check if required fields are not empty
+    if (!username || !password || !email) {
+      window.alert("Username, password, and email are required.");
+      return;
+    }
+
+    // Check if password meets criteria
+    if (password.length < 6 || password.length > 10) {
+      setPasswordError("Password must be between 6 and 10 characters.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
     try {
-      // Make a POST request to save the form data
       const response = await axios.post(
         "http://localhost:3001/createUser",
         formData
       );
       console.log(response.data);
-      // Display alert for successful sign-up
       window.alert("Registration successful!");
-      // Redirect to the data page
       window.location.href = "/data";
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Optionally, you can handle error response here
+      if (error.response && error.response.status === 400) {
+        // Display validation errors returned by the server
+        window.alert(error.response.data.error);
+      } else {
+        // Handle other server errors
+        window.alert("Failed to submit form. Please try again later.");
+      }
     }
   };
 
@@ -62,6 +83,7 @@ function Form() {
             value={formData.password}
             onChange={handleChange}
           />
+          {passwordError && <p className="error">{passwordError}</p>}
 
           <label htmlFor="email">Email:</label>
           <input
@@ -92,7 +114,7 @@ function Form() {
 
           {/* Use Link to navigate to data page after form submission */}
           <button type="submit">Sign Up</button>
-         </form>
+        </form>
       </div>
     </div>
   );
