@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const port = 3001;
 const cors = require("cors");
-const UsersModel = require("./models/Users");
+const {UsersModel,JoiUserSchema} = require("./models/Users");
 
 app.use(cors());
 app.use(express.json());
@@ -40,22 +40,33 @@ app.get("/getUsers", (req, res) => {
     });
 });
 
-app.post("/createUser", (req, res) => {
-  UsersModel.create({
-    Username: req.body.username,
-    Password: req.body.password,
-    Email: req.body.email,
-    RegistrationDate: new Date().toISOString(),
-    LastLoginDate: null
-  })
-    .then(newUser => {
-      res.json(newUser);
-    })
-    .catch(error => {
-      console.error("Error creating user:", error);
-      res.status(500).json({ error: "Failed to create user" });
+app.post("/createUser", async (req, res) => {
+  const { Username, Password, Email, RegistrationDate, LastLoginDate } = req.body;
+
+  const { error } = JoiUserSchema.validate({ Username, Password, Email, RegistrationDate, LastLoginDate });
+
+  if (error) {
+    return res.status(400).json({ success: false, message: error.details[0].message });
+  }
+
+  if (Password.length < 6 || Password.length > 10) {
+    return res.status(400).json({ success: false, message: "Password must be between 6 and 10 characters long" });
+  }
+
+  try {
+    const newUser = new UsersModel({
+      Username, Password, Email, RegistrationDate, LastLoginDate
     });
+    await newUser.save();
+
+    res.json(newUser);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ error: "Failed to create user" });
+  }
 });
+
+
 
 app.delete("/deleteUser/:userId", (req, res) => {
   const userId = req.params.userId;
