@@ -6,9 +6,9 @@ function Home() {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    fetch("https://mocki.io/v1/778301e9-360c-4ed9-89f3-0f39d0a4c804")
+    fetch("https://mocki.io/v1/d37fabb9-b032-422f-b312-c22f1dc781ab")
       .then((response) => response.json())
-      .then((data) => setUserData(data))
+      .then((data) => setUserData(data.students)) // Access students array
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
@@ -32,11 +32,16 @@ function Home() {
 
       <div className="display-data">
         {userData.map((user, index) => (
-          <div key={index} className="ClumsyData">
-            <h3>{user.name}</h3>
-            <p>Email: {user.email}</p>
-            <p>Clumsiness: {user.clumsiness_tagline}</p>
-            {user.image && <img src={user.image} alt={user.name} />}
+          <div key={index} className="Clumsystyle">
+            <div className="ClumsyImage">
+              {user.image && <img src={user.image} alt={user.name} />}
+            </div>
+
+            <div className="ClumsyData">
+              <h3>{user.name}</h3>
+              <p>Email: {user.email}</p>
+              <p>Clumsiness: {user.clumsiness_tagline}</p>
+            </div>
           </div>
         ))}
       </div>
