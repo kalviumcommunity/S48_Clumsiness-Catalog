@@ -1,5 +1,5 @@
-// SignInForm.js
 import React, { useState } from "react";
+import axios from "axios";
 import "./SignIn.css";
 
 function SignInForm() {
@@ -16,11 +16,18 @@ function SignInForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your sign-in logic here, for example, sending the form data to a server
-    console.log("Submitted form data:", formData);
-    // Reset form after submission
+    
+    try {
+      const response = await axios.post("http://localhost:3001/signin", formData);
+      console.log("Sign-in successful. Token:", response.data);
+      // You can store the token in localStorage or a cookie for future authenticated requests
+    } catch (error) {
+      console.error("Sign-in failed:", error);
+      alert("Sign-in failed. Please check your credentials.");
+    }
+
     setFormData({
       username: "",
       password: "",
