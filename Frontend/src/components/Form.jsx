@@ -4,11 +4,11 @@ import "./Form.css";
 
 function Form() {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    email: "",
-    registrationDate: "",
-    lastLoginDate: "",
+    Username: "",
+    Password: "",
+    Email: "",
+    RegistrationDate: "",
+    LastLoginDate: "",
   });
   const [passwordError, setPasswordError] = useState("");
 
@@ -24,16 +24,16 @@ function Form() {
     e.preventDefault();
 
     // Destructure formData
-    const { username, password, email } = formData;
+    const { Username, Password, Email } = formData;
 
     // Check if required fields are not empty
-    if (!username || !password || !email) {
+    if (!Username || !Password || !Email) {
       window.alert("Username, password, and email are required.");
       return;
     }
 
     // Check if password meets criteria
-    if (password.length < 6 || password.length > 10) {
+    if (Password.length < 6 || Password.length > 10) {
       setPasswordError("Password must be between 6 and 10 characters.");
       return;
     } else {
@@ -47,7 +47,7 @@ function Form() {
       );
       console.log(response.data);
       window.alert("Registration successful!");
-      window.location.href = "/data";
+      window.location.href = "/Home";
     } catch (error) {
       console.error("Error submitting form:", error);
       if (error.response && error.response.status === 400) {
@@ -70,8 +70,8 @@ function Form() {
           <input
             type="text"
             id="username"
-            name="username"
-            value={formData.username}
+            name="Username"
+            value={formData.Username}
             onChange={handleChange}
           />
 
@@ -79,8 +79,8 @@ function Form() {
           <input
             type="password"
             id="password"
-            name="password"
-            value={formData.password}
+            name="Password"
+            value={formData.Password}
             onChange={handleChange}
           />
           {passwordError && <p className="error">{passwordError}</p>}
@@ -89,8 +89,8 @@ function Form() {
           <input
             type="email"
             id="email"
-            name="email"
-            value={formData.email}
+            name="Email"
+            value={formData.Email}
             onChange={handleChange}
           />
 
@@ -98,8 +98,8 @@ function Form() {
           <input
             type="text"
             id="registrationDate"
-            name="registrationDate"
-            value={formData.registrationDate}
+            name="RegistrationDate"
+            value={formData.RegistrationDate}
             onChange={handleChange}
           />
 
@@ -107,8 +107,8 @@ function Form() {
           <input
             type="text"
             id="lastLoginDate"
-            name="lastLoginDate"
-            value={formData.lastLoginDate}
+            name="LastLoginDate"
+            value={formData.LastLoginDate}
             onChange={handleChange}
           />
 
