@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
 
+
 function Form() {
   const [formData, setFormData] = useState({
     Username: "",
@@ -47,7 +48,7 @@ function Form() {
       );
       console.log(response.data);
       window.alert("Registration successful!");
-      window.location.href = "/Home";
+      window.location.href = "/home";
     } catch (error) {
       console.error("Error submitting form:", error);
       if (error.response && error.response.status === 400) {
