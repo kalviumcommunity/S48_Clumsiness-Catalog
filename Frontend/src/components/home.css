@@ -39,18 +39,27 @@ body {
 }
 .display-data {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-.ClumsyData {
+
+.Clumsystyle {
   padding: 20px;
   margin: 15px;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   line-height: 1.5em;
+  display: flex;
 }
-.ClumsyData:hover {
+.Clumsystyle:hover {
   box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
   transform: scale(1.05);
   color: #2d6a4f;
+}
+.ClumsyImage img {
+  border-radius: 50%;
+  margin: 0 20px;
+}
+.ClumsyData {
+  margin-left: 10px;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SignIn.css";
 
+
 function SignInForm() {
   const [formData, setFormData] = useState({
     username: "",
@@ -18,20 +19,16 @@ function SignInForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
       const response = await axios.post("http://localhost:3001/signin", formData);
       console.log("Sign-in successful. Token:", response.data);
+      alert("Successfully Signedin ")
+      window.location.href = "/home";
       // You can store the token in localStorage or a cookie for future authenticated requests
     } catch (error) {
       console.error("Sign-in failed:", error);
       alert("Sign-in failed. Please check your credentials.");
-    }
-
-    setFormData({
-      username: "",
-      password: "",
-    });
+    };
   };
 
   return (
