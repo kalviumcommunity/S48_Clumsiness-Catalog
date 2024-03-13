@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignIn.css";
-
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function SignInForm() {
   const [formData, setFormData] = useState({
@@ -16,19 +17,26 @@ function SignInForm() {
       [name]: value,
     });
   };
-
+  const nav = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/signin", formData);
+      const response = await axios.post(
+        "http://localhost:3001/signin",
+        formData
+      );
+      alert("Successfully Signedin ");
+      // window.location.href = "/home";
+      nav("/home");
+      // console.log("Sign-in successful. Token:", response.data.token);
       console.log("Sign-in successful. Token:", response.data);
-      alert("Successfully Signedin ")
-      window.location.href = "/home";
-      // You can store the token in localStorage or a cookie for future authenticated requests
+
+      Cookies.set("username", response.data.name);
+      Cookies.set("jwtToken", response.data.token);
     } catch (error) {
       console.error("Sign-in failed:", error);
       alert("Sign-in failed. Please check your credentials.");
-    };
+    }
   };
 
   return (

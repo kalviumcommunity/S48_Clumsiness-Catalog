@@ -6,6 +6,7 @@ const port = 3001;
 const cors = require("cors");
 const { UsersModel, JoiUserSchema } = require("./models/Users");
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
@@ -42,45 +43,48 @@ app.get("/getUsers", (req, res) => {
 });
 
 app.post("/signin", async (req, res) => {
-  const { Username, Password } = req.body;
-  try {
-    // Check if the user already has a valid session
-    if (req.cookies.name) {
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "User already authenticated",
-          user: req.cookies.name,
-        });
-    }
+  let data = req.body;
+  console.log(data, "data");
 
-    // Find user by username
-    const user = await UsersModel.findOne({ username: Username });
+  // Check if the user already has a valid session
+  if (data.cookie) {
+    Tok;
+    return res.status(200).json({
+      success: true,
+      message: "User already authenticated",
+      user: req.cookies.name,
+    });
+  }
+  // Find user by username
+  try {
+    const user = await UsersModel.findOne({ Username: data.username });
+
     if (!user) {
+      console.log("1111");
       return res
         .status(404)
-        .json({ success: false, message: "User not found" });
+        .send({ success: false, message: "User not found" });
     }
-
-    // Check password
-    if (user.password !== Password) {
+    console.log(user, "not found one");
+    // // Check password
+    if (user.Password !== data.password) {
+      console.log("wrong");
       return res
         .status(401)
-        .json({ success: false, message: "Invalid password" });
+        .send({ success: false, message: "Invalid Password" });
     }
-
-    // Set the cookie
-    res.cookie("name", Username, {
-      httpOnly: true,
-      secure: false, // Change to true if using HTTPS in production
-      domain: "localhost",
-      path: "/5173",
+    const token = jwt.sign({ Username: data.username }, "ananya", {
+      expiresIn: "1h",
     });
-    res.json({ success: true, message: "Authentication successful", user });
-  } catch (error) {
-    console.error("Error signing in:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    if (user) {
+      res.cookie("token", token);
+      return res
+        .status(200)
+        .send({ message: "login successfull", name: user.Username, token });
+    }
+  } catch (err) {
+    console.log("something went wrong");
+    return res.send("something went wrong");
   }
 });
 
@@ -103,12 +107,10 @@ app.post("/createUser", async (req, res) => {
   }
 
   if (Password.length < 6 || Password.length > 10) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "Password must be between 6 and 10 characters long",
-      });
+    return res.status(400).json({
+      success: false,
+      message: "Password must be between 6 and 10 characters long",
+    });
   }
 
   try {

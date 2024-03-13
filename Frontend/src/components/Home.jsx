@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./home.css";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [userData, setUserData] = useState([]);
+  let nav = useNavigate();
 
   useEffect(() => {
     fetch("https://mocki.io/v1/d37fabb9-b032-422f-b312-c22f1dc781ab")
@@ -16,7 +19,9 @@ function Home() {
     const confirmed = window.confirm("Are you sure you want to log out?");
     if (confirmed) {
       // If user confirms, log them out and redirect to the home page
-      window.location.href = "/logout";
+      Cookies.remove("username");
+      Cookies.remove("jwtToken");
+      nav("/");
     }
   };
 
