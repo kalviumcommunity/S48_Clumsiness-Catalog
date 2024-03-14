@@ -6,6 +6,7 @@ const port = 3001;
 const cors = require("cors");
 const { UsersModel, JoiUserSchema } = require("./models/Users");
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
@@ -72,10 +73,14 @@ app.post("/signin", async (req, res) => {
         .status(401)
         .send({ success: false, message: "Invalid Password" });
     }
+    const token = jwt.sign({ Username: data.username }, "ananya", {
+      expiresIn: "1h",
+    });
     if (user) {
+      res.cookie("token", token);
       return res
         .status(200)
-        .send({ message: "login successfull", name: user.Username });
+        .send({ message: "login successfull", name: user.Username, token });
     }
   } catch (err) {
     console.log("something went wrong");

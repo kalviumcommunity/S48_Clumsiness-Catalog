@@ -20,6 +20,7 @@ function Home() {
     if (confirmed) {
       // If user confirms, log them out and redirect to the home page
       Cookies.remove("username");
+      Cookies.remove("jwtToken");
       nav("/");
     }
   };
