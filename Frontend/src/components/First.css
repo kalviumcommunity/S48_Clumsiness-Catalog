@@ -36,7 +36,7 @@ body {
 /* Styling for the signIn button */
 #signInButton,
 #signUpButton,
-#datButton {
+.explore-text {
   color: #d8f3dc;
   background-color: #2d6a4f;
   border: none;
@@ -56,11 +56,9 @@ body {
 #signUpButton:hover {
   background-color: #6b705c;
 }
-#datButton:hover{
+#datButton:hover {
   background-color: #6b705c;
 }
-
-
 
 /* Styling for the content section */
 .content {
@@ -145,4 +143,59 @@ li {
   justify-content: center;
   color: #2d6a4f;
   margin-top: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ddddd5;
+  min-width: 150px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#backdrop {
+  height: 100vh;
+  width: 100%;
+  display: none;
+  z-index: 0;
+}
+
+.dropdown-content div {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.explore-text {
+  cursor: pointer;
+}
+
+.user-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.user-info {
+  margin-bottom: 20px;
 }
