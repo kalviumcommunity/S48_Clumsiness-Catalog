@@ -73,7 +73,6 @@ app.post("/signin", async (req, res) => {
         .status(401)
         .send({ success: false, message: "Invalid Password" });
     }
-
     const token = jwt.sign({ Username: data.username }, "ananya", {
       expiresIn: "1h",
     });
