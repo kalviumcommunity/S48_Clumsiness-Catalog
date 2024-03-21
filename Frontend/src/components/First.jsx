@@ -29,7 +29,7 @@ function First() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getUsers")
+      .get("https://clumisness-catalogue.onrender.com/getUsers")
       .then((response) => {
         setUsers(response.data);
       })
@@ -72,10 +72,7 @@ function First() {
             </span>
             <div className="dropdown-content">
               {users.map((user) => (
-                <div
-                  key={user._id}
-                  onClick={() => handleOpenPopup(user)}
-                >
+                <div key={user._id} onClick={() => handleOpenPopup(user)}>
                   {user.Username}
                 </div>
               ))}
@@ -84,7 +81,7 @@ function First() {
         </div>
       </div>
 
-      <div className={`content ${isPopupOpen ? 'blur' : ''}`}>
+      <div className={`content ${isPopupOpen ? "blur" : ""}`}>
         <div className="left-content">
           <h1>Welcome to Clumsi-Log</h1>
           <p>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
 
-
 function Form() {
   const [formData, setFormData] = useState({
     Username: "",
@@ -43,7 +42,7 @@ function Form() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/createUser",
+        "https://clumisness-catalogue.onrender.com/createUser",
         formData
       );
       console.log(response.data);

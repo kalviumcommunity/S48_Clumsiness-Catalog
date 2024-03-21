@@ -7,7 +7,7 @@ function Data() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getUsers")
+      .get("https://clumisness-catalogue.onrender.com/getUsers")
       .then((response) => {
         setUsers(response.data);
       })
@@ -18,7 +18,10 @@ function Data() {
 
   const updateUser = (userId, updatedUserData) => {
     axios
-      .put(`http://localhost:3001/updateUser/${userId}`, updatedUserData)
+      .put(
+        `https://clumisness-catalogue.onrender.com/updateUser/${userId}`,
+        updatedUserData
+      )
       .then((result) => {
         console.log(result);
         alert("User details updated successfully!");
@@ -29,7 +32,7 @@ function Data() {
 
   const deleteUser = (userId) => {
     axios
-      .delete(`http://localhost:3001/deleteUser/${userId}`)
+      .delete(`https://clumisness-catalogue.onrender.com/deleteUser/${userId}`)
       .then((result) => {
         console.log(result);
         window.location.reload();
