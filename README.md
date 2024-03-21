@@ -34,3 +34,8 @@ The "Class Clumsiness Catalog" is a web platform where individuals can share and
 - Optionally exploring Firebase authentication for additional options.
 - Optionally learning and implementing background jobs for enhanced functionality.
 - Optionally exploring topics such as Docker, SSR, caching, and benchmarking.
+
+## Deployment Links:
+
+- [Backend](https://clumisness-catalogue.onrender.com/getUsers)
+- [Frontend](https://clumsiness-catalogue.netlify.app/)
