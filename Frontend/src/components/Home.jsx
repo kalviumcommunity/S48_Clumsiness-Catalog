@@ -9,10 +9,21 @@ function Home() {
   let nav = useNavigate();
 
   useEffect(() => {
-    fetch("https://mocki.io/v1/d37fabb9-b032-422f-b312-c22f1dc781ab")
-      .then((response) => response.json())
-      .then((data) => setUserData(data.students)) // Access students array
-      .catch((error) => console.error("Error fetching data:", error));
+    fetch("https://mocki.io/v1/aea3367f-e63c-48d5-9bba-55eac7a2afc1")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // If the data structure matches what you expect, you can set it to state here
+        setUserData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   const handleLogout = () => {
@@ -39,13 +50,13 @@ function Home() {
         {userData.map((user, index) => (
           <div key={index} className="Clumsystyle">
             <div className="ClumsyImage">
-              {user.image && <img src={user.image} alt={user.name} />}
+              {user.Image && <img src={user.Image} alt={user.Name} />}
             </div>
 
             <div className="ClumsyData">
-              <h3>{user.name}</h3>
-              <p>Email: {user.email}</p>
-              <p>Clumsiness: {user.clumsiness_tagline}</p>
+              <h3>{user.Name}</h3>
+              <p>Email: {user.Email}</p>
+              <p>Clumsiness: {user.Description}</p>
             </div>
           </div>
         ))}
